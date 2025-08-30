@@ -397,9 +397,6 @@ img {
 .hbar__left {
   gap: 12px;
 }
-.hbar__right {
-  /* margin-left: auto; */
-}
 .hbar__left-scrolled {
   display: none;
   gap: 20px;
@@ -544,8 +541,6 @@ img {
 }
 .header__bar.scrolled {
   height: 57px;
-}
-.header__bar.light {
 }
 .header__bar.scrolled,
 .header__bar.scrolled a,
