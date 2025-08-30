@@ -630,12 +630,11 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 16px;
+  padding: 16px 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   font-size: 0.8125rem;
   text-transform: uppercase;
-  line-height: 120%;
 }
 .hmenu__link:first-child {
   display: flex;
