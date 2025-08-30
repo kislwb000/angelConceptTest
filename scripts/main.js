@@ -1,3 +1,4 @@
+// HEADER SLIDER
 const headerSliderBlock = document.querySelector('.hslider')
 
 const items = [
@@ -51,9 +52,10 @@ let headerSlider = new Swiper(headerSliderBlock, {
   centeredSlides: false,
   grabCursor: false,
   loop: true,
+  speed: 700,
 
   autoplay: {
-    delay: 8000,
+    delay: 7000,
     disableOnInteraction: false,
   },
 
@@ -88,35 +90,70 @@ let headerSlider = new Swiper(headerSliderBlock, {
   },
 })
 
+// MENU & BAR
 const hbar = document.querySelector('.header__bar')
 const hbarMenuBtn = document.querySelector('.hbar__menubtn')
 const hmenuLinkFirst = document.querySelector('.hmenu__link')
 const mainMenu = document.querySelector('.menu')
 const headerMenu = document.querySelector('.header__menu')
 
+function showMinimalHbar() {
+  hbar.classList.add('scrolled')
+}
+function hideMinimalHbar() {
+  hbar.classList.remove('scrolled')
+}
+
+function showMainMenu() {
+  hmenuLinkFirst.classList.add('active')
+  hbar.classList.add('light')
+  headerMenu.classList.add('light')
+  mainMenu.classList.add('opened')
+}
+function hideMainMenu() {
+  hmenuLinkFirst.classList.remove('active')
+  hbar.classList.remove('light')
+  headerMenu.classList.remove('light')
+  mainMenu.classList.remove('opened')
+  mainMenu.classList.remove('scrolled')
+}
+
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 66) {
-    hbar.classList.add('scrolled')
+  if (window.scrollY > 20) {
+    showMinimalHbar()
+    hideMainMenu()
+    headerMenu.classList.remove('scrolled')
+    hbarMenuBtn.classList.remove('active')
   } else {
-    hbar.classList.remove('scrolled')
-    // headerMenu.classList.add('scrolled')
-    // mainMenu.classList.add('scrolled')
-    mainMenu.style.height = '0'
-    hbar.classList.remove('light')
-    hmenuLinkFirst.classList.remove('active')
+    hideMinimalHbar()
+  }
+})
+hmenuLinkFirst.addEventListener('click', (event) => {
+  event.preventDefault()
+  if (
+    hmenuLinkFirst.classList.contains('active') &&
+    hbarMenuBtn.classList.contains('active')
+  ) {
+    hideMainMenu()
+    hbarMenuBtn.classList.remove('active')
+    headerMenu.classList.remove('scrolled', 'light')
+  } else if (hmenuLinkFirst.classList.contains('active')) {
+    hideMainMenu()
+  } else {
+    showMainMenu()
   }
 })
 hbarMenuBtn.addEventListener('click', () => {
   hbarMenuBtn.classList.toggle('active')
-})
-hmenuLinkFirst.addEventListener('click', (event) => {
-  event.preventDefault()
-  hmenuLinkFirst.classList.toggle('active')
-  if (hmenuLinkFirst.classList.contains('active')) {
-    hbar.classList.add('light')
-    mainMenu.style.height = '392px'
+  if (hbarMenuBtn.classList.contains('active')) {
+    headerMenu.classList.add('scrolled', 'light')
+    mainMenu.classList.add('scrolled')
+    hmenuLinkFirst.classList.add('active')
+    mainMenu.classList.add('opened')
   } else {
-    mainMenu.style.height = '0'
-    hbar.classList.remove('light')
+    headerMenu.classList.remove('scrolled', 'light')
+    mainMenu.classList.remove('scrolled')
+    hmenuLinkFirst.classList.remove('active')
+    mainMenu.classList.remove('opened')
   }
 })
